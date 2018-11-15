@@ -26,13 +26,12 @@ if switch_off == 0
         G(index_dbit(i),:) = buffer;
     end
     
+    %code b with G in 4 bit batches
     iter = length(b)/4;
     for i = 1:iter
         sig = mod(G * b(1+(i-1)*4:4+(i-1)*4), 2);
         c = cat(1, c, sig);
     end
-    
-    
     
 elseif switch_off == 1
     c = b;
