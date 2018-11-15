@@ -1,0 +1,1 @@
+function [MSE, BER] = analog_sink(a, a_tilde, b, b_hat)

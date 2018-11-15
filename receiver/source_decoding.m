@@ -1,0 +1,1 @@
+function u_hat = source_decoding(b_hat_buf, code_tree, switch_off)

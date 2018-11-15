@@ -1,0 +1,1 @@
+function b_hat_buf = rx_fifo(b_hat, par_fifolen, par_sdblklen, switch_reset)

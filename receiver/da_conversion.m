@@ -1,0 +1,1 @@
+function a_tilde = da_conversion(u_hat, par_w, par_q, switch_graph)
