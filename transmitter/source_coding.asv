@@ -133,10 +133,7 @@ if switch_off == 0
     
     %graph
     if switch_graph == 1
-        bar(cell2mat(codes), p(index_roots))
-        ylabel('probability');
-        xlabel('source alphabet');
-        title('source coding probability distribution');
+        bar(
     end
     
     

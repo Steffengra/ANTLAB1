@@ -110,21 +110,22 @@ for i = 1:iter
                 disp('oh no');
             end 
         end
-        codewords{end+1, 1} = c_cur;
+        codewords{end+1} = c_cur;
     end
     codes = num2cell(codes(index_roots));
     tree_cur = {codes, codewords};
     code_tree{end+1} = tree_cur;
     
     %encode bits--
-    length_100 = 0;
     for i = 1:length(current)
-        %find source in source alphabet
-        index_code = find(cell2mat([tree_cur{1}]) == bi2de(current(i,:)));
-        %find corresponding code
-        encoded = cell2mat(tree_cur{2}(index_code));
-        length_100 = length_100 + length(encoded);
-        b = [b; encoded'];
+        cell2mat([tree_cur{1}])
+        current(i,:);
     end
+    
+    
     %--
+    
+    
+    %bitstream = huffmanenco(bi2de(current), dict);
+    %b = cat(1, b, bitstream);
 end

@@ -1,0 +1,36 @@
+function [b, code_tree] = source_coding2(u,par_scblklen,switch_off,switch_graph)
+%add graph
+if switch_off == 0
+    
+    iter = ceil(length(u)/par_scblklen);
+    code_tree = {};
+    b = [];
+
+    for i = 1:iter
+        if i*par_scblklen+1 > length(u)
+            current = u((i-1)*par_scblklen+1:end,:);
+        else
+            current = u((i-1)*par_scblklen+1:i*par_scblklen,:);
+        end
+
+        [codes, ~, indexc] = unique(current, 'rows');
+        counts = accumarray(indexc, 1); %counts*1 for each unique index
+        codes = de2bi(codes);
+        p = counts/length(current);
+        disp(counts);
+        %huffman dict
+        for i = 1:length
+        
+
+        %[dict, ~] = huffmandict(bi2de(codes), p);
+        %disp((dict(1,2)));
+        code_tree{end+1} = dict;
+        bitstream = huffmanenco(bi2de(current), dict);
+        b = cat(1, b, bitstream);
+    end
+elseif switch_off == 1
+    b = u;
+    code_tree = [];
+else
+    error('invalid parameter, switch_off must be 0 or 1');
+end
