@@ -1,27 +1,48 @@
 function d_tilde = rx_filter(s_tilde, par_rx_w, switch_graph)
-%missing switch_graph
-%lowpass-filter to remove artifacts, flips spectrum a 2nd time
-%create filter
-lg = length(s_tilde);
-x = linspace(-lg/2, lg/2, lg);
-f = linspace(0, 1, lg);
-B = 1/par_rx_w;
-h = B*sinc(B*x);
 
-%apply filter
-d_tilde = conv(h, s_tilde, 'same')';
+%design filter---------------
+rp = .0025;                    % Passband ripple
+rs = 50;                    % Stopband ripple
+f = [1/par_rx_w-0.005 1/par_rx_w+0.005];   % Cutoff frequencies
+a = [1 0];                  % Desired amplitudes
+dev = [(10^(rp/20)-1)/(10^(rp/20)+1)  10^(-rs/20)];
+
+[n, fo, ao, w] = firpmord(f, a, dev);
+h = firpm(n, fo, ao, w);
+%----------------------------
+
+d_tilde = filtfilt(h, 1, s_tilde);
+
+
+%plots
+% figure;
+% fft_d = fft(s_tilde);
+% fft_h = (fft(h));
+% fft_s = fftshift(fft(d_tilde));
+% 
+% subplot(3, 1, 1);
+% plot(abs(fft_d));
+% subplot(3, 1, 2);
+% plot(abs(fft_h));
+% subplot(3, 1, 3);
+% plot(abs(fft_s));
 
 
 %downsample
 d_tilde = d_tilde(1:par_rx_w:end);
 
-%plots
-% fft_s_tilde = fftshift(fft(s_tilde));
-% fft_h = fftshift(fft(h));
-% fft_d_tilde = fftshift(fft(d_tilde));
-% subplot(3, 1, 1);
-% plot(f, abs(fft_s_tilde));
-% subplot(3, 1, 2);
-% plot(f, abs(fft_h));
-% subplot(3, 1, 3);
-% plot(abs(fft_d_tilde));
+if switch_graph == 1
+   figure;
+   subplot(2,1,1);
+   plot(real(d_tilde));
+   title('real part of filtered signal');
+   ylabel('value');
+   subplot(2,1,2);
+   plot(imag(d_tilde));
+   title('imaginary part of filtered signal');
+   xlabel('samples')
+   ylabel('value');
+   
+   
+   eyediagram(d_tilde, 4);
+end

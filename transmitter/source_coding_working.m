@@ -117,7 +117,7 @@ if switch_off == 0
                     disp('oh no');
                 end 
             end
-            codewords{end+1, 1} = fliplr(c_cur); %need to flip to have unique words
+            codewords{end+1, 1} = c_cur;
         end
         codes = num2cell(codes(index_roots));
         tree_cur = {codes, codewords};

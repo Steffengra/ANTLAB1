@@ -1,4 +1,6 @@
 function b_hat = channel_decoding(c_hat, par_H, switch_off)
+%2. Figure of exemplary code word indicating corrected errors ????
+
 b_hat = []';
 if switch_off == 0
     iter = length(c_hat)/7;
