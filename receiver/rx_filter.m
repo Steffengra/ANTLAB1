@@ -1,17 +1,17 @@
 function d_tilde = rx_filter(s_tilde, par_rx_w, switch_graph)
 
 %design filter---------------
-rp = .0025;                    % Passband ripple
-rs = 50;                    % Stopband ripple
-f = [1/par_rx_w-0.005 1/par_rx_w+0.005];   % Cutoff frequencies
-a = [1 0];                  % Desired amplitudes
-dev = [(10^(rp/20)-1)/(10^(rp/20)+1)  10^(-rs/20)];
+rp = .0025;                                         % Passband ripple
+rs = 50;                                            % Stopband ripple
+f = [1/par_rx_w-0.005 1/par_rx_w+0.005];            % Cutoff frequencies
+a = [1 0];                                          % Desired amplitudes
+dev = [(10^(rp/20)-1)/(10^(rp/20)+1)  10^(-rs/20)]; % Ripple dB <> linear
 
-[n, fo, ao, w] = firpmord(f, a, dev);
-h = firpm(n, fo, ao, w);
+[n, fo, ao, w] = firpmord(f, a, dev);               % Determine min filter order for specs
+h = firpm(n, fo, ao, w);                            % Get filter transfer function
 %----------------------------
 
-d_tilde = filtfilt(h, 1, s_tilde);
+d_tilde = filtfilt(h, 1, s_tilde);                  % Apply filter
 
 
 %plots

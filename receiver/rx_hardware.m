@@ -1,6 +1,6 @@
 function s_tilde = rx_hardware(y, par_rxthresh, switch_graph)
 
-s_tilde = y;
+s_tilde = y; %transparent passthrough
 
 if switch_graph == 1
     figure;

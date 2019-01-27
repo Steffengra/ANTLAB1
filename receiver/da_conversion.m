@@ -1,9 +1,9 @@
 function a_tilde = da_conversion(u_hat, par_w, par_q, switch_graph)
 
 %interp1 statt upsample
-x = 0:length(u_hat)-1;
-xq = 0:1/par_w:length(u_hat)-1;
-upsampled = floor(interp1(x, bi2de(u_hat), xq)');
+x = 0:length(u_hat)-1;  % x of u_hat
+xq = 0:1/par_w:length(u_hat)-1; % x of interpolated desired a
+upsampled = floor(interp1(x, bi2de(u_hat), xq)');  
 upsampled = upsampled + 1;
 
 %assign steps to values

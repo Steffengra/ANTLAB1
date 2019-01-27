@@ -15,4 +15,4 @@ for i = 2:(length(code_lengths))
 end
     
 a_tilde = da_conversion(u_hat, 2, 8, 1);
-[MSE, BER] = analog_sink(a, a_tilde, u, u_hat);
+[MSE, BER_final, BER_coded, BER_decoded] = analog_sink(a, a_tilde, u, u_hat, c_total, c_hat, b, b_hat);
