@@ -14,5 +14,5 @@ for i = 2:(length(code_lengths))
     u_hat = [u_hat; source_decoding(b_hat_buf, code_tree{i}, 0)];
 end
     
-a_tilde = da_conversion(u_hat, 2, 8, 1);
+a_tilde = da_conversion(u_hat, 2, 8, switch_graph);
 [MSE, BER_final, BER_coded, BER_decoded] = analog_sink(a, a_tilde, u, u_hat, c_total, c_hat, b, b_hat);

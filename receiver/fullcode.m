@@ -1,5 +1,5 @@
-par_qampsk = 0;
-switch_graph = 0;
+par_qampsk = 1;
+switch_graph = 1;
 MSE_tot = zeros(1, 10);
 BER_final_tot = zeros(1, 10);
 BER_coded_tot = zeros(1, 10);
@@ -26,3 +26,4 @@ plot(1:10, BER_decoded_tot);
 title('MSE and BER over SNR|DB');
 xlabel('SNR|DB');
 legend({'MSE','BER final', 'BER coded', 'BER decoded'});
+hold off;

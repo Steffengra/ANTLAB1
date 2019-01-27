@@ -2,7 +2,7 @@ function c_hat = demodulation(d_tilde, switch_mod, switch_graph)
 
 c_hat = [].';
 if switch_mod == 0 %QAM
-    values = [-.3, -.1, .1, .3];
+    values = [-3, -1, 1, 3]/sqrt(10);
     for i = 1:length(d_tilde)
         re = real(d_tilde(i));
         [~, index] = min(abs(re-values));   % find minimum distance (|x|^2) symbol on real axis
@@ -55,8 +55,8 @@ if switch_graph == 1
         end        
     elseif switch_mod == 0
         for ii = -1:1
-            refline(0, ii*0.2);
-            line([ii*0.2 ii*0.2], [-2.6, 2.6]);
+            refline(0, ii*0.632);
+            line([ii*0.632 ii*0.632], [-2.6, 2.6]);
         end
     end
     xlim([-1.5 1.5]);
