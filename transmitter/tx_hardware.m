@@ -1,11 +1,12 @@
 function x = tx_hardware(s, par_txthresh, switch_graph)
-x = s;
+test = s;
 for i = 1:length(s)
-   absolute = abs(x(i));
+   absolute = abs(test(i));
    if absolute >= par_txthresh
-       x(i) = x(i)/absolute;
+       test(i) = test(i)/absolute;
    end
 end
+x = test;
 
 if switch_graph == 1
     figure;
@@ -19,5 +20,3 @@ if switch_graph == 1
     xlabel('samples');
     ylabel('magnitude');
 end
-
-x = s;

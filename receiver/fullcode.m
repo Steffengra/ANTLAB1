@@ -1,5 +1,5 @@
 par_qampsk = 1;
-switch_graph = 1;
+switch_graph = 0;
 MSE_tot = zeros(1, 10);
 BER_final_tot = zeros(1, 10);
 BER_coded_tot = zeros(1, 10);

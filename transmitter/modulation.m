@@ -27,7 +27,7 @@ if switch_mod == 0 %QAM
         end
         d = cat(1, d, re + j*im);
     end
-    d = d ./ 10; %normalize average symbol power to 1
+    d = d ./ sqrt(10); %normalize average symbol power to 1
     
 elseif switch_mod == 1 %PSK
     for i = 1:iter

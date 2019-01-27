@@ -17,7 +17,7 @@ h = firpm(n, fo, ao, w);
 
 
 s = filtfilt(h, 1, d_upsampled);
-s = s * (par_tx) ;  %add gain to filter to keep amplitude normal
+s = s * 0.55 * (par_tx) ;  % add gain to filter to keep amplitude normal. amplitude normal at factor s, but due to hardware thresholding we need to add some of the gain after transmission
 
 %plots
 % figure;

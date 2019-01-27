@@ -12,6 +12,7 @@ h = firpm(n, fo, ao, w);                            % Get filter transfer functi
 %----------------------------
 
 d_tilde = filtfilt(h, 1, s_tilde);                  % Apply filter
+d_tilde = 1/0.55 * d_tilde  ;  %add gain to filter to keep amplitude normal
 
 
 %plots

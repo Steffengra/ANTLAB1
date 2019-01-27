@@ -7,6 +7,7 @@ u = ad_conversion(a, 2, 8, switch_graph);
 b_buf = tx_fifo(b, 10000, 32, 1);
 H = [1 0 1 0 1 0 1;0 1 1 0 0 1 1;0 0 0 1 1 1 1];
 c = channel_coding(b_buf, H, 0);
+c_total = c; %accumulate c, for BER only
 d = modulation(c, par_qampsk, switch_graph);
 while 1
     b_buf = tx_fifo([], 10000, 32, 0);
@@ -14,6 +15,7 @@ while 1
         break;
     end
     c = channel_coding(b_buf, H, 0);
+    c_total = [c_total; c];
     d = cat(1, d, modulation(c, par_qampsk, 0));
 end
 

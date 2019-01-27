@@ -1,4 +1,4 @@
-function b_hat = channel_decoding(c_hat, par_H, switch_off)
+function b_hat = channel_decoding(c_hat, par_H, switch_off, switch_graph)
 plotflag = 0;
 
 b_hat = []';
@@ -9,7 +9,7 @@ if switch_off == 0
         syndrome = mod(par_H*code, 2);          % calculate syndrome matrix (showing error)
         if not(isequal(syndrome, [0 0 0]'))     % if error:
             %exemplary figure of corrected bit
-            if plotflag == 0
+            if and(plotflag == 0, switch_graph == 1)
                 figure;
                 stem(1:7, code);
                 hold on;

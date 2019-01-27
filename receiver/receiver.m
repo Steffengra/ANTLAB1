@@ -5,7 +5,7 @@
 s_tilde = rx_hardware(y, 1, switch_graph);
 d_tilde = rx_filter(s_tilde, 8, switch_graph);
 c_hat = demodulation(d_tilde, par_qampsk, switch_graph);
-b_hat = channel_decoding(c_hat, H, 0);
+b_hat = channel_decoding(c_hat, H, 0, switch_graph);
 b_hat_buf = rx_fifo(b_hat, 10000, code_lengths(1), 1); %isequal(b(1:2336), b_hat(1:2336)) = 1, missing bits stuck in tx_fifo
 u_hat = source_decoding(b_hat_buf, code_tree{1}, 0);
 
